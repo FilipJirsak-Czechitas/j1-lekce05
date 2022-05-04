@@ -5,6 +5,15 @@ public class Adresa {
     private String obec;
     private int psc;
 
+    public Adresa() {
+    }
+
+    public Adresa(String uliceACisla, String obec, int psc) {
+        this.uliceACisla = uliceACisla;
+        this.obec = obec;
+        this.psc = psc;
+    }
+
     public String getUliceACisla() {
         return uliceACisla;
     }

@@ -14,6 +14,22 @@ public class Osoba {
 
     private Telefon telefon;
 
+    public Osoba(String jmeno, String prijmeni, String rodneCislo) {
+        if (jmeno.isBlank()) {
+            System.err.println("Jméno nesmí být prázdné");
+        }
+        if (prijmeni.isBlank()) {
+            System.err.println("Příjmení nesmí být prázdné");
+        }
+        if (rodneCislo.isBlank()) {
+            System.err.println("Rodné číslo nesmí být prázdné");
+        }
+
+        this.jmeno = jmeno;
+        this.prijmeni = prijmeni;
+        this.rodneCislo = rodneCislo;
+    }
+
     public void setJmeno(String jmeno) {
         if (jmeno.isBlank()) {
             System.err.println("Jméno nemůže být prázdné.");
@@ -75,6 +91,10 @@ public class Osoba {
     }
 
     public void setSoukromyEmail(String soukromyEmail) {
+        if (!soukromyEmail.contains("@")) {
+            System.err.println("E-mail musí obsahovat zavináč.");
+            return;
+        }
         this.soukromyEmail = soukromyEmail;
     }
 
@@ -83,11 +103,11 @@ public class Osoba {
     }
 
     public void setPracovniEmail(String pracovniEmail) {
+        if (!pracovniEmail.contains("@")) {
+            System.err.println("E-mail musí obsahovat zavináč.");
+            return;
+        }
         this.pracovniEmail = pracovniEmail;
-    }
-
-    public String toString() {
-        return jmeno + " " + prijmeni + " (" + rodneCislo + ")";
     }
 
     public Telefon getTelefon() {
@@ -96,6 +116,10 @@ public class Osoba {
 
     public void setTelefon(Telefon telefon) {
         this.telefon = telefon;
+    }
+
+    public String toString() {
+        return jmeno + " " + prijmeni + " (" + rodneCislo + ")";
     }
 }
 
