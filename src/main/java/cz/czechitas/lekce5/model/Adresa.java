@@ -1,8 +1,17 @@
 package cz.czechitas.lekce5.model;
 
 import java.util.Objects;
+import java.util.regex.Pattern;
 
 public class Adresa {
+    /**
+     * Regulární výraz testující, zda je vstup platné PSČ, tj. obsahuje právě pět číslic.
+     *
+     * <p>{@code \\d} označuje číslici (znaky 0–9).</p>
+     *
+     * <p>{@code {5}} označuje přesný opakování – 5.</p>
+     */
+    public static final Pattern RE_PSC = Pattern.compile("\\d{5}");
     private String ulice;
     private String castObce;
     private String obec;
@@ -56,7 +65,13 @@ public class Adresa {
             return;
         }
         if (psc.length() != 5) {
-            System.err.println("PSČ musí mít 5 znaků.");
+            System.err.print(psc);
+            System.err.println(" – PSČ musí mít 5 znaků.");
+            return;
+        }
+        if (!RE_PSC.matcher(psc).matches()) {
+            System.err.print(psc);
+            System.err.println(" – PSČ musí obsahovat jen číslice.");
             return;
         }
         this.psc = psc;
